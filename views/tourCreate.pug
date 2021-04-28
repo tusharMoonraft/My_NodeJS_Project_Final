@@ -1,0 +1,33 @@
+extends base
+block content
+    
+    .login-form
+        h2.heading-secondary.ma-bt-lg Create New Tour
+        form.form.form--tourCreate
+            .form__group
+                label.form__label(for='name') name:
+                input#name.form__input(type='name', placeholder='name', required)
+            //- .form__group.ma-bt-md
+            //-     label.form__label(for='duration') ratingsQuantity:
+            //-     input#duration.form__input(type='number', placeholder='duration', required)
+            //- .form__group.ma-bt-md
+            //-     label.form__label(for='duration') maxGroupSize
+            //-     input#maxGroupSize.form__input(type='number', placeholder='maxGroupSize', required)  
+            //- .form__group.ma-bt-md
+            //-     label.form__label(for='duration') price
+            //-     input#price.form__input(type='number', placeholder='price', required)       
+            //- .form__group.ma-bt-md
+            //-     label.form__label(for='duration') name:
+            //-     input#price.form__input(type='text', placeholder='price', required) 
+            //- .form__group.ma-bt-md
+            //-     label.form__label(for='duration') duration:
+            //-     input#price.form__input(type='number', placeholder='price', required) 
+            //- .form__group.ma-bt-md
+            //-     label.form__label(for='duration') summary:
+            //-     input#price.form__input(type='text', placeholder='price', required) 
+            //- .form__group.ma-bt-md
+            //-     label.form__label(for='duration') description:
+            //-     input#price.form__input(type='text', placeholder='price', required) 
+                                    
+            .form__group
+                button.btn.btn--green Create Tour
