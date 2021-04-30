@@ -1,19 +1,13 @@
 /* eslint-disable*/
 import axios from 'axios';
 import {showAlert} from './alert'
-export const signup=async (name,email,password,passwordConfirm)=>{
-    console.log('signup',name,email,password,passwordConfirm)
+export const signup=async (data)=>{
+    console.log('signup',data)
     try{
         const res=await axios({
             method:'POST',
             url:'http://localhost:3000/api/v1/users/signup',
-            data:{
-                name:name,
-                email:email,
-                password:password,
-                passwordConfirm:passwordConfirm
-                
-            }
+            data
         });
         console.log('signup',res)
 

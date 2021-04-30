@@ -3,6 +3,7 @@ import '@babel/polyfill';
 import {displayMap} from './mapbox'
 import {login,logout} from './login';
 import {signup} from './signup';
+import {tourCreate} from './tourCreate'
 import {updateSettings} from './updateSettings'
 import {bookTour} from './stripe'
 
@@ -10,6 +11,7 @@ import {bookTour} from './stripe'
 const mapBox=document.getElementById('map');
 const loginForm=document.querySelector('.form--login');
 const signupForm=document.querySelector('.form--signup');
+const createTourForm=document.querySelector('.form--tourCreate')
 const btnsignup=document.querySelector('.btn-signup')
 
 const logOutBtn=document.querySelector('.nav__el--logout');
@@ -27,13 +29,23 @@ if(mapBox){
 if(signupForm){
     btnsignup.addEventListener('click',e=>{
         console.log("gone")
-        const name=document.getElementById('name').value
-        const email=document.getElementById('email').value;
-        const password=document.getElementById('password').value;
-        const passwordConfirm=document.getElementById('passwordConfirm').value
-        console.log('indexjs',name,email,password,passwordConfirm)
+        // const name=document.getElementById('name').value
+        // const email=document.getElementById('email').value;
+        // const password=document.getElementById('password').value;
+        // const passwordConfirm=document.getElementById('passwordConfirm').value;
+        // const photo=document.getElementById('photo').files[0]
+        const form=new FormData();
+
+        form.append('name',document.getElementById('name').value);
+        form.append('email',document.getElementById('email').value);
+        form.append('password',document.getElementById('password').value);
+        form.append('passwordConfirm',document.getElementById('passwordConfirm').value);
+        form.append('photo',document.getElementById('photo').files[0]);
+
+
+        console.log('indexjs',form)
         e.preventDefault();
-        signup(name,email,password,passwordConfirm)
+        signup(form)
         console.log("outside")
     })
 }
@@ -49,7 +61,22 @@ if(loginForm){
         login(email,password)
     })
 };
+if(createTourForm){
+    createTourForm.addEventListener('submit',e=>{
+        const name=document.getElementById('name').value;
+        const ratingsQuantity=document.getElementById('ratingsQuantity').value;
+        const ratingsAverage=document.getElementById('ratingsAverage').value;
+        const maxGroupSize=document.getElementById('price').value;
+        const price=document.getElementById('price').value;
+        const duration=document.getElementById('duration').value;
+        const summary=document.getElementById('summary').value;
+        const description=document.getElementById('description').value;
+        console.log('index',name);
+        e.preventDefault();
+        tourCreate(name,ratingsQuantity,ratingsAverage,maxGroupSize,price,duration,summary,description)
 
+    })
+}
 
 
 if(logOutBtn) logOutBtn.addEventListener('click',logout)

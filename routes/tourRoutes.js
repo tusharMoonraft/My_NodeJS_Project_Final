@@ -46,7 +46,7 @@ router.route('/distances/:latlng/unit/:unit').get(tourController.getDistances);
 router
   .route('/tour-create')
     .post(
-      authController.createTour
+      tourController.createTour
   );
 
 router

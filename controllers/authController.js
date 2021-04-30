@@ -39,12 +39,23 @@ const createSendToken = (user, statusCode, res) => {
 };
 
 
-exports.signup = catchAsync(async (req, res, next) => {
-  const newUser = await User.create(req.body);
+exports.signup = catchAsync(async (req, res, next) => { 
+  const newUser = await User.create({
+    name:req.body.name,
+    email:req.body.email,
+    password:req.body.password,
+    passwordConfirm:req.body.passwordConfirm,
+    photo:req.file.filename
 
-  // const url=`${req.protocol}://${req.get('host')}/me`;
-  // console.log(url)
-  // await new Email(newUser,url).sendWelcome()
+  });
+  const photoUser=req.file
+  console.log('req.body',req.body);
+  console.log('newUser',newUser)
+  console.log('photoUser',photoUser)
+  newUser.photo=req.file.filename
+  if(req.file) newUser.photo=req.file.filename
+
+  
   
   createSendToken(newUser, 201, res);
 });
@@ -69,19 +80,19 @@ exports.login = catchAsync(async (req, res, next) => {
 });
 
 
-exports.createTour=catchAsync(async (req,res,next)=>{
-  const doc=req.body
-  // const doc = await Tour.create(req.body);
-  // console.log('auth',doc)
-  // res.status(201).json({
-  //   status: 'success',
-  //   data: {
-  //     data: doc
-  //   }
-  // });
- console.log('authcontroller',doc)
+// exports.createTour=catchAsync(async (req,res,next)=>{
+//   const doc=req.body
+//   const {name} = await Tour.create(req.body);
+//   // console.log('auth',doc) changing 29-4
+//   res.status(201).json({
+//     status: 'success',
+//     data: {
+//       data: doc
+//     }
+//   });
+//  console.log('authcontroller',doc)
 
-})
+// })
 
 exports.logout=(req,res)=>{
   res.cookie('jwt','loggedout',{
